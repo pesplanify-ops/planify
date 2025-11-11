@@ -1,2 +1,3 @@
 .vercel
 building/node_modules/ # skip if already present
+building/node_modules/
