@@ -18,6 +18,10 @@ app.use('/api/consultations', require('./routes/consultations'));
 app.use('/api/packages', require('./routes/packages'));
 
 // Serve frontend
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'admin.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
