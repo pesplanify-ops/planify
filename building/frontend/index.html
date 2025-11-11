@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planify - Beautiful Homes, Designed Your Way</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a class="nav-logo" href="#home" aria-label="Planify home">
+          <img src="logo.svg" alt="" class="nav-logo-image" />
+          <span class="nav-logo-text">Planify</span>
+        </a>
+        <div class="nav-menu" id="nav-menu">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <div class="nav-auth">
+            <button class="btn-login" onclick="showLoginModal()">Login</button>
+            <button class="btn-register" onclick="showRegisterModal()">
+              Register
+            </button>
+          </div>
+        </div>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-background"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1>Beautiful Homes, Designed Your Way</h1>
+          <p>
+            Work with a team of finest architects and interior designers to
+            design your dream home online, at extremely reasonable rates.
+          </p>
+          <button class="btn-primary" onclick="showConsultationModal()">
+            Get Free Consultation
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Easiest Way to Design Beautiful Homes and Spaces</h2>
+          <p>Get your home expertly designed fast easy and affordably</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card" onclick="showPlanFinder()">
+            <div class="service-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3>Readymade House Plan</h3>
+            <p>
+              Explore our handpicked collection of expertly designed house plans
+              with front elevation designs.
+            </p>
+            <button
+              class="btn-service"
+              onclick="event.stopPropagation(); showPlanFinder()"
+            >
+              Browse Plans
+            </button>
+          </div>
+          <div class="service-card" onclick="show3DElevations()">
+            <div class="service-icon">
+              <i class="fas fa-cube"></i>
+            </div>
+            <h3>3D Front Elevations</h3>
+            <p>
+              Our expert architects can help design beautiful front and side
+              elevation views for your dream home.
+            </p>
+            <button
+              class="btn-service"
+              onclick="event.stopPropagation(); show3DElevations()"
+            >
+              View Gallery
+            </button>
+          </div>
+          <div class="service-card" onclick="showVastuConsultancy()">
+            <div class="service-icon">
+              <i class="fas fa-compass"></i>
+            </div>
+            <h3>Vastu Consultancy</h3>
+            <p>
+              Building, renovating or decorating your home as per Vastu Shastra
+              guidelines.
+            </p>
+            <button
+              class="btn-service"
+              onclick="event.stopPropagation(); showVastuConsultancy()"
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Get in touch for your dream home design</p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>+91 6361-300726</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>pesplanify@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Location</h4>
+                <p>Civil Department, PESITM college, Shivamogga</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form id="contact-form">
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Your Phone"
+                required
+              />
+              <select name="service" required>
+                <option value="">Select Service</option>
+                <option value="house_plan">House Plan</option>
+                <option value="elevation">3D Elevation</option>
+                <option value="cad">CAD Drafting</option>
+              </select>
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows="5"
+                required
+              ></textarea>
+              <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Planify</h3>
+            <p>Beautiful Homes, Designed Your Way</p>
+          </div>
+          <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Architectural Design</a></li>
+              <li><a href="#services">3D Elevation Design</a></li>
+              <li><a href="#services">CAD Drafting</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>+91 6361-300726</p>
+            <p>pesplanify@gmail.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Houseyog. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('loginModal')">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn-primary">Login</button>
+        </form>
+        <p>
+          Don't have an account?
+          <a href="#" onclick="showRegisterModal()">Register here</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('registerModal')">&times;</span>
+        <h2>Register</h2>
+        <form id="registerForm">
+          <input type="text" name="name" placeholder="Full Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="tel" name="phone" placeholder="Phone" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn-primary">Register</button>
+        </form>
+        <p>
+          Already have an account?
+          <a href="#" onclick="showLoginModal()">Login here</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('consultationModal')"
+          >&times;</span
+        >
+        <div class="form-header">
+          <h2>🎯 Get Free Expert Consultation</h2>
+          <p class="form-subtitle">
+            Let our architects guide you through your dream home journey
+          </p>
+        </div>
+        <form id="consultationForm">
+          <div class="form-section">
+            <h3 class="section-title">👤 Quick Contact Info</h3>
+            <div class="form-row">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name *"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address *"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number *"
+                required
+              />
+              <input
+                type="text"
+                name="location"
+                placeholder="City/Location *"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🏠 Project Overview</h3>
+            <div class="form-row">
+              <select name="service" required>
+                <option value="">What do you need help with? *</option>
+                <option value="house_plan">🏠 House Plan Design</option>
+                <option value="elevation">🎨 3D Elevation Design</option>
+                <option value="vastu">🕉️ Vastu Consultation</option>
+                <option value="interior">🛋️ Interior Design</option>
+                <option value="complete">🏗️ Complete Home Design</option>
+                <option value="renovation">🔨 Home Renovation</option>
+                <option value="plot_selection">📍 Plot Selection Help</option>
+              </select>
+              <select name="projectStage" required>
+                <option value="">Project Stage *</option>
+                <option value="planning">📋 Just Planning</option>
+                <option value="plot_purchased">📍 Plot Purchased</option>
+                <option value="construction">🏗️ Under Construction</option>
+                <option value="renovation">🔨 Renovation</option>
+                <option value="completed">✅ Completed</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <input
+                type="text"
+                name="plotSize"
+                placeholder="Plot Size (e.g., 30x40 ft)"
+              />
+              <select name="budget">
+                <option value="">Budget Range</option>
+                <option value="under_5lakh">Under ₹5 Lakhs</option>
+                <option value="5_15lakh">₹5-15 Lakhs</option>
+                <option value="15_30lakh">₹15-30 Lakhs</option>
+                <option value="30_50lakh">₹30-50 Lakhs</option>
+                <option value="above_50lakh">Above ₹50 Lakhs</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">⏰ Timeline & Priority</h3>
+            <div class="form-row">
+              <select name="timeline" required>
+                <option value="">When do you want to start? *</option>
+                <option value="immediate">⚡ Immediately</option>
+                <option value="1_month">📅 Within 1 month</option>
+                <option value="3_months">🗓️ Within 3 months</option>
+                <option value="6_months">📆 Within 6 months</option>
+                <option value="flexible">🕐 Flexible timing</option>
+              </select>
+              <select name="priority" required>
+                <option value="">Project Priority *</option>
+                <option value="high">🔥 High Priority</option>
+                <option value="medium">📊 Medium Priority</option>
+                <option value="low">📋 Low Priority</option>
+                <option value="exploring">🔍 Just Exploring</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">💭 Your Vision</h3>
+            <textarea
+              name="message"
+              placeholder="Tell us about your dream home vision, specific requirements, style preferences, or any questions you have..."
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-consultation">
+            🚀 Get My Free Consultation
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard Modal (for logged in users) -->
+    <div id="dashboardModal" class="modal">
+      <div class="modal-content dashboard-content">
+        <span class="close" onclick="closeModal('dashboardModal')"
+          >&times;</span
+        >
+        <h2>My Dashboard</h2>
+        <div class="dashboard-tabs">
+          <button class="tab-btn active" onclick="showTab('projects')">
+            My Projects
+          </button>
+          <button class="tab-btn" onclick="showTab('consultations')">
+            Consultations
+          </button>
+          <button class="tab-btn" onclick="logout()">Logout</button>
+        </div>
+        <div id="projects-tab" class="tab-content active">
+          <div class="projects-header">
+            <h3>My Projects</h3>
+            <button class="btn-primary" onclick="showNewProjectModal()">
+              New Project
+            </button>
+          </div>
+          <div id="projects-list" class="projects-list">
+            <!-- Projects will be loaded here -->
+          </div>
+        </div>
+        <div id="consultations-tab" class="tab-content">
+          <h3>My Consultations</h3>
+          <div id="consultations-list" class="consultations-list">
+            <!-- Consultations will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Project Modal -->
+    <div id="newProjectModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('newProjectModal')"
+          >&times;</span
+        >
+        <h2>Create New Project</h2>
+        <form id="newProjectForm" enctype="multipart/form-data">
+          <input
+            type="text"
+            name="title"
+            placeholder="Project Title"
+            required
+          />
+          <textarea
+            name="description"
+            placeholder="Project Description"
+            rows="3"
+            required
+          ></textarea>
+          <select name="type" required>
+            <option value="">Select Project Type</option>
+            <option value="house_plan">House Plan</option>
+            <option value="elevation">3D Elevation</option>
+            <option value="cad_drafting">CAD Drafting</option>
+          </select>
+          <input
+            type="number"
+            name="budget"
+            placeholder="Budget (₹)"
+            required
+          />
+          <input
+            type="text"
+            name="plotSize"
+            placeholder="Plot Size (optional)"
+          />
+          <textarea
+            name="requirements"
+            placeholder="Specific Requirements"
+            rows="3"
+          ></textarea>
+          <input type="file" name="files" multiple accept="image/*,.pdf,.dwg" />
+          <button type="submit" class="btn-primary">Create Project</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Plan Finder Modal -->
+    <div id="planFinderModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closePlanFinder()">&times;</span>
+        <h2>Find Your Ideal Plan</h2>
+        <form id="planFinderForm">
+          <div class="form-group">
+            <label>Plot Dimensions</label>
+            <div class="button-group">
+              <button type="button" class="dimension-btn" data-value="30x40">
+                30x40
+              </button>
+              <button type="button" class="dimension-btn" data-value="30x50">
+                30x50
+              </button>
+              <button type="button" class="dimension-btn" data-value="40x60">
+                40x60
+              </button>
+              <button type="button" class="dimension-btn" data-value="custom">
+                Custom
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>House Facing</label>
+            <div class="button-group">
+              <button type="button" class="facing-btn" data-value="north">
+                North
+              </button>
+              <button type="button" class="facing-btn" data-value="south">
+                South
+              </button>
+              <button type="button" class="facing-btn" data-value="east">
+                East
+              </button>
+              <button type="button" class="facing-btn" data-value="west">
+                West
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Number of Floors</label>
+            <div class="number-input">
+              <button
+                type="button"
+                class="number-btn"
+                onclick="decreaseFloors()"
+              >
+                -
+              </button>
+              <span id="floorCount">1</span>
+              <button
+                type="button"
+                class="number-btn"
+                onclick="increaseFloors()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>BHK</label>
+            <select name="bhk" required>
+              <option value="1">1 BHK</option>
+              <option value="2">2 BHK</option>
+              <option value="3">3 BHK</option>
+              <option value="4">4 BHK</option>
+              <option value="5">5 BHK</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">Search Plans</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Search Results Modal -->
+    <div id="searchResultsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeSearchResults()">&times;</span>
+        <h2>Available House Plans</h2>
+        <div id="searchResults" class="search-results">
+          <!-- Results will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Elevations Main Modal -->
+    <div id="elevationsMainModal" class="modal">
+      <div class="modal-content elevations-modal-content">
+        <span class="close" onclick="closeModal('elevationsMainModal')"
+          >&times;</span
+        >
+        <h2>3D Front Elevation Designs</h2>
+        <p class="modal-subtitle">
+          Transform your vision into stunning reality with our photorealistic 3D
+          elevation designs
+        </p>
+
+        <!-- Features Grid -->
+        <div class="elevation-features">
+          <div class="feature-item">
+            <i class="fas fa-paint-brush"></i>
+            <h4>Custom Designs</h4>
+            <p>Tailored to your style</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-eye"></i>
+            <h4>Photorealistic</h4>
+            <p>See before you build</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-clock"></i>
+            <h4>Quick Delivery</h4>
+            <p>7-10 days turnaround</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-redo"></i>
+            <h4>Free Revisions</h4>
+            <p>Until you're satisfied</p>
+          </div>
+        </div>
+
+        <!-- 3D Gallery -->
+        <div class="elevation-gallery">
+          <h3>Our Portfolio</h3>
+          <div class="gallery-grid">
+            <div class="elevation-card" onclick="show3DViewer('modern')">
+              <div class="elevation-image">
+                <div class="elevation-placeholder modern-design">
+                  <i class="fas fa-building"></i>
+                  <span>Modern Villa</span>
+                </div>
+                <div class="elevation-overlay">
+                  <i class="fas fa-expand"></i>
+                  <span>View in 3D</span>
+                </div>
+              </div>
+              <div class="elevation-info">
+                <h4>Contemporary Modern Villa</h4>
+                <p>Clean lines, glass facade, minimalist design</p>
+                <div class="elevation-tags">
+                  <span class="tag">Modern</span>
+                  <span class="tag">3 Floors</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="elevation-card" onclick="show3DViewer('traditional')">
+              <div class="elevation-image">
+                <div class="elevation-placeholder traditional-design">
+                  <i class="fas fa-home"></i>
+                  <span>Traditional House</span>
+                </div>
+                <div class="elevation-overlay">
+                  <i class="fas fa-expand"></i>
+                  <span>View in 3D</span>
+                </div>
+              </div>
+              <div class="elevation-info">
+                <h4>Classic Traditional Home</h4>
+                <p>Sloped roof, wooden elements, classic charm</p>
+                <div class="elevation-tags">
+                  <span class="tag">Traditional</span>
+                  <span class="tag">2 Floors</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="elevation-card" onclick="show3DViewer('luxury')">
+              <div class="elevation-image">
+                <div class="elevation-placeholder luxury-design">
+                  <i class="fas fa-crown"></i>
+                  <span>Luxury Villa</span>
+                </div>
+                <div class="elevation-overlay">
+                  <i class="fas fa-expand"></i>
+                  <span>View in 3D</span>
+                </div>
+              </div>
+              <div class="elevation-info">
+                <h4>Premium Luxury Villa</h4>
+                <p>Grand entrance, columns, ornate details</p>
+                <div class="elevation-tags">
+                  <span class="tag">Luxury</span>
+                  <span class="tag">3 Floors</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="elevation-card" onclick="show3DViewer('minimalist')">
+              <div class="elevation-image">
+                <div class="elevation-placeholder minimalist-design">
+                  <i class="fas fa-square"></i>
+                  <span>Minimalist Design</span>
+                </div>
+                <div class="elevation-overlay">
+                  <i class="fas fa-expand"></i>
+                  <span>View in 3D</span>
+                </div>
+              </div>
+              <div class="elevation-info">
+                <h4>Sleek Minimalist Home</h4>
+                <p>Simple forms, neutral palette, functional</p>
+                <div class="elevation-tags">
+                  <span class="tag">Minimalist</span>
+                  <span class="tag">2 Floors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before & After -->
+        <div class="before-after-section">
+          <h3>Before & After Transformations</h3>
+          <div class="comparison-container">
+            <div class="comparison-card">
+              <div class="comparison-images">
+                <div class="before-image">
+                  <span class="label">Before</span>
+                  <div class="image-placeholder before">
+                    <i class="fas fa-image"></i>
+                    <p>Simple Structure</p>
+                  </div>
+                </div>
+                <div class="arrow-separator">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="after-image">
+                  <span class="label">After</span>
+                  <div class="image-placeholder after">
+                    <i class="fas fa-star"></i>
+                    <p>Stunning Elevation</p>
+                  </div>
+                </div>
+              </div>
+              <p class="comparison-text">
+                Added modern facade, large windows, and contemporary finishes
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="modal-footer-cta">
+          <button class="btn-primary" onclick="showElevationRequest()">
+            Request Your Design
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewer3DModal" class="modal">
+      <div class="modal-content viewer-modal">
+        <span class="close" onclick="close3DViewer()">&times;</span>
+        <h2 id="viewer3DTitle">3D Elevation View</h2>
+        <div class="viewer-container">
+          <div class="viewer-3d" id="viewer3D">
+            <div class="rotation-indicator">
+              <i class="fas fa-sync-alt"></i>
+              <p>Drag to rotate • Scroll to zoom</p>
+            </div>
+            <div id="viewerContent" class="viewer-content"></div>
+          </div>
+          <div class="viewer-controls">
+            <button onclick="rotateModel('left')">
+              <i class="fas fa-arrow-left"></i> Rotate Left
+            </button>
+            <button onclick="resetView()">
+              <i class="fas fa-redo"></i> Reset View
+            </button>
+            <button onclick="rotateModel('right')">
+              Rotate Right <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="showElevationRequest()">
+          Request This Design
+        </button>
+      </div>
+    </div>
+
+    <!-- Vastu Consultancy Main Modal -->
+    <div id="vastuMainModal" class="modal">
+      <div class="modal-content vastu-modal-content">
+        <span class="close" onclick="closeModal('vastuMainModal')"
+          >&times;</span
+        >
+        <h2>Vastu Shastra Consultancy</h2>
+        <p class="modal-subtitle">
+          Build your dream home in harmony with nature and cosmic energies
+        </p>
+
+        <!-- Vastu Introduction -->
+        <div class="vastu-intro">
+          <div class="vastu-content">
+            <h3>What is Vastu Shastra?</h3>
+            <p>
+              Vastu Shastra is an ancient Indian science of architecture and
+              construction that creates harmony between your home and natural
+              elements. Our expert consultants help you design spaces that
+              promote health, wealth, and happiness.
+            </p>
+          </div>
+          <div class="vastu-benefits">
+            <h4>Benefits of Vastu-Compliant Homes:</h4>
+            <ul>
+              <li>
+                <i class="fas fa-check-circle"></i> Enhanced positive energy
+                flow
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Improved health and
+                well-being
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Better financial prospects
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Harmonious family
+                relationships
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Peaceful living environment
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Vastu Guidelines -->
+        <div class="vastu-guidelines">
+          <h3>Essential Vastu Guidelines</h3>
+          <div class="guidelines-grid">
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-door-open"></i>
+              </div>
+              <h4>Main Entrance</h4>
+              <p>
+                North, East, or Northeast facing entrance brings prosperity and
+                positive energy
+              </p>
+            </div>
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-bed"></i>
+              </div>
+              <h4>Master Bedroom</h4>
+              <p>
+                Southwest direction ensures stability and harmonious
+                relationships
+              </p>
+            </div>
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <h4>Kitchen</h4>
+              <p>
+                Southeast direction with cooking facing East promotes health
+              </p>
+            </div>
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-couch"></i>
+              </div>
+              <h4>Living Room</h4>
+              <p>North or East direction creates welcoming family space</p>
+            </div>
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-tint"></i>
+              </div>
+              <h4>Water Elements</h4>
+              <p>Northeast corner for water attracts prosperity</p>
+            </div>
+            <div class="guideline-card">
+              <div class="guideline-icon">
+                <i class="fas fa-pray"></i>
+              </div>
+              <h4>Puja Room</h4>
+              <p>Northeast or East direction enhances spiritual energy</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vastu Checklist -->
+        <div class="vastu-checklist">
+          <h3>Vastu Compliance Checklist</h3>
+          <div class="checklist-container">
+            <div class="checklist-column">
+              <h4><i class="fas fa-check"></i> Do's</h4>
+              <ul>
+                <li>Keep Northeast corner light and clutter-free</li>
+                <li>Ensure main door opens clockwise</li>
+                <li>Place heavy furniture in Southwest</li>
+                <li>Keep center of house (Brahmasthan) open</li>
+                <li>Use bright colors in North and East</li>
+                <li>Install windows in North and East walls</li>
+              </ul>
+            </div>
+            <div class="checklist-column">
+              <h4><i class="fas fa-times"></i> Don'ts</h4>
+              <ul>
+                <li>Avoid toilets in Northeast corner</li>
+                <li>Don't place mirrors in bedroom facing bed</li>
+                <li>Avoid stairs in center of house</li>
+                <li>Don't build kitchen in Southwest</li>
+                <li>Avoid dark colors in North and East</li>
+                <li>Don't keep broken or unused items</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vastu Tips -->
+        <div class="vastu-tips">
+          <h3>Quick Vastu Tips for Your Home</h3>
+          <div class="tips-grid">
+            <div class="tip-card">
+              <span class="tip-number">1</span>
+              <p>Sleep with head towards South or East for better rest</p>
+            </div>
+            <div class="tip-card">
+              <span class="tip-number">2</span>
+              <p>Keep clocks in working condition and remove broken ones</p>
+            </div>
+            <div class="tip-card">
+              <span class="tip-number">3</span>
+              <p>Place indoor plants in North or East for positive energy</p>
+            </div>
+            <div class="tip-card">
+              <span class="tip-number">4</span>
+              <p>Ensure good ventilation and natural light in all rooms</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="modal-footer-cta">
+          <button class="btn-primary" onclick="showVastuBooking()">
+            Book a Vastu Consultant
+          </button>
+          <button class="btn-secondary" onclick="showConsultationModal()">
+            Free Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewer3DModal" class="modal">
+      <div class="modal-content viewer-modal">
+        <span class="close" onclick="close3DViewer()">&times;</span>
+        <h2 id="viewer3DTitle">3D Elevation View</h2>
+        <div class="viewer-container">
+          <div class="viewer-3d" id="viewer3D">
+            <div class="rotation-indicator">
+              <i class="fas fa-sync-alt"></i>
+              <p>Drag to rotate • Scroll to zoom</p>
+            </div>
+            <div id="viewerContent" class="viewer-content"></div>
+          </div>
+          <div class="viewer-controls">
+            <button onclick="rotateModel('left')">
+              <i class="fas fa-arrow-left"></i> Rotate Left
+            </button>
+            <button onclick="resetView()">
+              <i class="fas fa-redo"></i> Reset View
+            </button>
+            <button onclick="rotateModel('right')">
+              Rotate Right <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="showElevationRequest()">
+          Request This Design
+        </button>
+      </div>
+    </div>
+
+    <!-- 3D Elevation Design Request Modal -->
+    <div id="elevationRequestModal" class="modal">
+      <div class="modal-content elevation-form-modal">
+        <span class="close" onclick="closeModal('elevationRequestModal')"
+          >&times;</span
+        >
+        <div class="form-header">
+          <h2>🎨 Request 3D Elevation Design</h2>
+          <p class="form-subtitle">
+            Transform your home's exterior with stunning photorealistic 3D
+            designs
+          </p>
+        </div>
+
+        <form id="elevationRequestForm">
+          <div class="form-section">
+            <h3 class="section-title">👤 Your Information</h3>
+            <div class="form-row">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name *"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address *"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number *"
+                required
+              />
+              <input
+                type="text"
+                name="location"
+                placeholder="City/Location *"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🏗️ Project Details</h3>
+            <div class="form-row">
+              <input
+                type="text"
+                name="plotSize"
+                placeholder="Plot Size (e.g., 30x40 ft) *"
+                required
+              />
+              <select name="floors" required>
+                <option value="">Number of Floors *</option>
+                <option value="1">Ground Floor Only</option>
+                <option value="2">Ground + First Floor</option>
+                <option value="3">Ground + First + Second Floor</option>
+                <option value="4">Multi-Story (4+ Floors)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <select name="designType" required>
+                <option value="">Elevation Coverage *</option>
+                <option value="front_elevation">🏠 Front Elevation Only</option>
+                <option value="front_side">🏠 Front + Side Elevation</option>
+                <option value="all_sides">🏠 All 4 Sides Complete</option>
+                <option value="360_view">🌐 360° Virtual Tour</option>
+              </select>
+              <select name="style" required>
+                <option value="">Architectural Style *</option>
+                <option value="modern">🏢 Modern Contemporary</option>
+                <option value="traditional">🏛️ Traditional Indian</option>
+                <option value="luxury">👑 Luxury Villa</option>
+                <option value="minimalist">⬜ Minimalist</option>
+                <option value="colonial">🏛️ Colonial</option>
+                <option value="mediterranean">🌊 Mediterranean</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🎨 Design Preferences</h3>
+            <div class="preference-grid">
+              <div class="preference-group">
+                <label>🏠 Material Preference</label>
+                <div class="checkbox-grid">
+                  <label
+                    ><input type="checkbox" name="materials" value="brick" />
+                    Brick</label
+                  >
+                  <label
+                    ><input type="checkbox" name="materials" value="stone" />
+                    Natural Stone</label
+                  >
+                  <label
+                    ><input type="checkbox" name="materials" value="wood" />
+                    Wood</label
+                  >
+                  <label
+                    ><input type="checkbox" name="materials" value="glass" />
+                    Glass</label
+                  >
+                </div>
+              </div>
+              <div class="preference-group">
+                <label>🎨 Color Scheme</label>
+                <div class="checkbox-grid">
+                  <label
+                    ><input type="checkbox" name="colors" value="neutral" />
+                    Neutral Tones</label
+                  >
+                  <label
+                    ><input type="checkbox" name="colors" value="warm" /> Warm
+                    Colors</label
+                  >
+                  <label
+                    ><input type="checkbox" name="colors" value="cool" /> Cool
+                    Colors</label
+                  >
+                  <label
+                    ><input type="checkbox" name="colors" value="vibrant" />
+                    Vibrant Colors</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">✨ Special Features</h3>
+            <div class="feature-grid">
+              <label
+                ><input type="checkbox" name="features" value="balcony" /> 🏠
+                Balconies</label
+              >
+              <label
+                ><input type="checkbox" name="features" value="terrace" /> 🌅
+                Terrace Garden</label
+              >
+              <label
+                ><input type="checkbox" name="features" value="garage" /> 🚗 Car
+                Parking</label
+              >
+              <label
+                ><input type="checkbox" name="features" value="entrance" /> 🚪
+                Grand Entrance</label
+              >
+              <label
+                ><input type="checkbox" name="features" value="lighting" /> 💡
+                LED Lighting</label
+              >
+              <label
+                ><input type="checkbox" name="features" value="landscaping" />
+                🌿 Landscaping</label
+              >
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">📋 Vision & Requirements</h3>
+            <textarea
+              name="requirements"
+              placeholder="Describe your vision, inspiration, or any specific architectural elements you'd like to include..."
+              rows="4"
+              required
+            ></textarea>
+
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="hasPlans" />
+                📄 I have existing floor plans to share
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="hasPhotos" />
+                📸 I can provide current elevation photos
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">💰 Budget & Timeline</h3>
+            <div class="form-row">
+              <select name="budget" required>
+                <option value="">Budget Range *</option>
+                <option value="budget">₹50,000 - ₹1,00,000</option>
+                <option value="standard">₹1,00,000 - ₹2,50,000</option>
+                <option value="premium">₹2,50,000 - ₹5,00,000</option>
+                <option value="luxury">₹5,00,000+</option>
+              </select>
+              <select name="urgency" required>
+                <option value="">Project Timeline *</option>
+                <option value="urgent">⚡ Urgent (3-5 days)</option>
+                <option value="standard">📅 Standard (7-10 days)</option>
+                <option value="flexible">🕐 Flexible (10-15 days)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary btn-elevation">
+            🎨 Request My 3D Elevation Design
+          </button>
+        </form>
+
+        <div class="form-footer">
+          <p class="form-note">
+            ✨ <strong>What happens next?</strong><br />
+            1. Our design team reviews your requirements<br />
+            2. We'll contact you within 24 hours with a detailed proposal<br />
+            3. You'll receive initial concepts within 7-10 days<br />
+            4. Unlimited revisions until you're 100% satisfied!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vastu Consultation Booking Modal -->
+    <div id="vastuBookingModal" class="modal">
+      <div class="modal-content vastu-form-modal">
+        <span class="close" onclick="closeModal('vastuBookingModal')"
+          >&times;</span
+        >
+        <div class="form-header">
+          <h2>🕉️ Book Vastu Consultation</h2>
+          <p class="form-subtitle">
+            Harmonize your space with ancient Vastu wisdom for peace,
+            prosperity, and positive energy
+          </p>
+        </div>
+
+        <form id="vastuBookingForm">
+          <div class="form-section">
+            <h3 class="section-title">👤 Your Information</h3>
+            <div class="form-row">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name *"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address *"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number *"
+                required
+              />
+              <input
+                type="text"
+                name="location"
+                placeholder="City/Location *"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🏠 Property Details</h3>
+            <div class="form-row">
+              <select name="consultationType" required>
+                <option value="">Consultation Type *</option>
+                <option value="new_construction">🏗️ New Construction</option>
+                <option value="existing_home">🏠 Existing Home</option>
+                <option value="renovation">🔨 Renovation/Remodeling</option>
+                <option value="interior">🛋️ Interior Vastu</option>
+                <option value="commercial">🏢 Commercial Space</option>
+                <option value="plot_selection">📍 Plot Selection</option>
+              </select>
+              <select name="propertyType" required>
+                <option value="">Property Type *</option>
+                <option value="residential">🏠 Residential House</option>
+                <option value="apartment">🏢 Apartment/Flat</option>
+                <option value="villa">🏡 Villa/Bungalow</option>
+                <option value="office">🏢 Office Space</option>
+                <option value="shop">🏪 Shop/Commercial</option>
+                <option value="factory">🏭 Industrial</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <input
+                type="text"
+                name="plotSize"
+                placeholder="Plot/House Size (e.g., 30x40 ft)"
+              />
+              <select name="urgency" required>
+                <option value="">Consultation Timeline *</option>
+                <option value="urgent">⚡ Urgent (Within 3 days)</option>
+                <option value="week">📅 Within a week</option>
+                <option value="month">🗓️ Within a month</option>
+                <option value="flexible">🕐 Flexible timing</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🔮 Vastu Concerns & Issues</h3>
+            <div class="concern-grid">
+              <div class="concern-group">
+                <label>🏠 Home & Family Issues</label>
+                <div class="checkbox-grid">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="concerns"
+                      value="family_health"
+                    />
+                    Family Health Issues</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="financial" />
+                    Financial Problems</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="concerns"
+                      value="relationships"
+                    />
+                    Relationship Issues</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="career" />
+                    Career Growth</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="children" />
+                    Children's Education</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="stress" />
+                    Stress & Anxiety</label
+                  >
+                </div>
+              </div>
+              <div class="concern-group">
+                <label>🏗️ Property Issues</label>
+                <div class="checkbox-grid">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="concerns"
+                      value="plot_shape"
+                    />
+                    Irregular Plot Shape</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="main_door" />
+                    Main Door Position</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="kitchen" />
+                    Kitchen Placement</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="toilet" />
+                    Toilet Location</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="stairs" />
+                    Staircase Position</label
+                  >
+                  <label
+                    ><input type="checkbox" name="concerns" value="water" />
+                    Water Elements</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">🎯 Specific Areas to Focus</h3>
+            <div class="focus-grid">
+              <label
+                ><input type="checkbox" name="focus_areas" value="entrance" />
+                🚪 Entrance & Main Door</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="living" /> 🛋️
+                Living Room</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="kitchen" /> 🍳
+                Kitchen</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="bedroom" /> 🛏️
+                Master Bedroom</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="puja" /> 🕉️
+                Prayer Room</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="office" /> 💼
+                Home Office</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="bathroom" />
+                🚿 Bathroom</label
+              >
+              <label
+                ><input type="checkbox" name="focus_areas" value="garden" /> 🌿
+                Garden/Outdoor</label
+              >
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">📋 Detailed Concerns</h3>
+            <textarea
+              name="concerns"
+              placeholder="Please describe your specific Vastu concerns, family situations, or any issues you're experiencing in detail..."
+              rows="4"
+              required
+            ></textarea>
+
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="hasFloorPlan" />
+                📄 I have floor plans or property documents to share
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="hasPhotos" />
+                📸 I can provide property photos
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="hasProblems" />
+                ⚠️ I'm experiencing specific problems that need urgent attention
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">📞 Consultation Preferences</h3>
+            <div class="form-row">
+              <select name="consultationMode" required>
+                <option value="">Preferred Mode *</option>
+                <option value="onsite">🏠 On-Site Visit (Recommended)</option>
+                <option value="online">💻 Online Video Consultation</option>
+                <option value="both">🔄 Both (Online + Site Visit)</option>
+              </select>
+              <select name="consultantLevel" required>
+                <option value="">Consultant Level *</option>
+                <option value="standard">⭐ Standard Vastu Expert</option>
+                <option value="senior">⭐⭐ Senior Vastu Consultant</option>
+                <option value="master">⭐⭐⭐ Master Vastu Shastri</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary btn-vastu">
+            🕉️ Book My Vastu Consultation
+          </button>
+        </form>
+
+        <div class="form-footer">
+          <p class="form-note">
+            ✨ <strong>What to expect?</strong><br />
+            1. Our Vastu expert will analyze your property and concerns<br />
+            2. You'll receive a detailed Vastu report with specific
+            recommendations<br />
+            3. We'll provide step-by-step remedies and solutions<br />
+            4. Follow-up support to ensure positive energy flow in your space!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Test</title>
+    <style>
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .dimension-btn,
+      .facing-btn {
+        padding: 10px 20px;
+        border: 2px solid #e2e8f0;
+        background: #ffffff;
+        color: #4a5568;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .dimension-btn:hover,
+      .facing-btn:hover {
+        border-color: #667eea;
+        background: #f7fafc;
+      }
+      .dimension-btn.active,
+      .facing-btn.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        border-color: #667eea;
+      }
+      .test-section {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .console-output {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Button Selection Test</h1>
+
+    <div class="test-section">
+      <h3>Plot Dimensions</h3>
+      <div class="button-group">
+        <button type="button" class="dimension-btn" data-value="30x40">
+          30x40
+        </button>
+        <button type="button" class="dimension-btn" data-value="30x50">
+          30x50
+        </button>
+        <button type="button" class="dimension-btn" data-value="40x60">
+          40x60
+        </button>
+        <button type="button" class="dimension-btn" data-value="custom">
+          Custom
+        </button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>House Facing</h3>
+      <div class="button-group">
+        <button type="button" class="facing-btn" data-value="north">
+          North
+        </button>
+        <button type="button" class="facing-btn" data-value="south">
+          South
+        </button>
+        <button type="button" class="facing-btn" data-value="east">East</button>
+        <button type="button" class="facing-btn" data-value="west">West</button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>Console Output</h3>
+      <div id="console" class="console-output"></div>
+      <button onclick="clearConsole()">Clear Console</button>
+    </div>
+
+    <script>
+      let consoleOutput = document.getElementById("console");
+
+      function log(message) {
+        consoleOutput.textContent += message + "\n";
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+      }
+
+      function clearConsole() {
+        consoleOutput.textContent = "";
+      }
+
+      // Set default selections
+      document.addEventListener("DOMContentLoaded", function () {
+        log("🚀 Setting up button test");
+
+        // Set default dimension
+        const defaultDimension = document.querySelector(
+          '.dimension-btn[data-value="30x40"]'
+        );
+        if (defaultDimension) {
+          defaultDimension.classList.add("active");
+          log("✅ Default dimension set: 30x40");
+        }
+
+        // Set default facing
+        const defaultFacing = document.querySelector(
+          '.facing-btn[data-value="north"]'
+        );
+        if (defaultFacing) {
+          defaultFacing.classList.add("active");
+          log("✅ Default facing set: north");
+        }
+
+        log("✅ Button test setup complete");
+      });
+
+      // Event delegation for button clicks
+      document.addEventListener("click", function (e) {
+        log(
+          "🖱️ Click detected on: " +
+            e.target.tagName +
+            " with class: " +
+            e.target.className
+        );
+
+        // Handle dimension button clicks
+        if (e.target.classList.contains("dimension-btn")) {
+          e.preventDefault();
+          e.stopPropagation();
+          log("✅ Dimension button clicked: " + e.target.dataset.value);
+
+          // Remove active class from all dimension buttons
+          document
+            .querySelectorAll(".dimension-btn")
+            .forEach((b) => b.classList.remove("active"));
+
+          // Add active class to clicked button
+          e.target.classList.add("active");
+
+          log("✅ Dimension selection updated to: " + e.target.dataset.value);
+        }
+
+        // Handle facing button clicks
+        if (e.target.classList.contains("facing-btn")) {
+          e.preventDefault();
+          e.stopPropagation();
+          log("✅ Facing button clicked: " + e.target.dataset.value);
+
+          // Remove active class from all facing buttons
+          document
+            .querySelectorAll(".facing-btn")
+            .forEach((b) => b.classList.remove("active"));
+
+          // Add active class to clicked button
+          e.target.classList.add("active");
+
+          log("✅ Facing selection updated to: " + e.target.dataset.value);
+        }
+      });
+    </script>
+  </body>
+</html>

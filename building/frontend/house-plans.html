@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Readymade House Plans - Planify</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="services.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h2>
+            <a href="index.html" style="color: #2c5aa0; text-decoration: none"
+              >Planify</a
+            >
+          </h2>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="house-plans.html" class="nav-link active">House Plans</a>
+          <a href="elevations.html" class="nav-link">3D Elevations</a>
+          <a href="vastu.html" class="nav-link">Vastu Consultancy</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+          <div class="nav-auth">
+            <button
+              class="btn-login"
+              onclick="window.location.href='index.html'"
+            >
+              Login
+            </button>
+            <button
+              class="btn-register"
+              onclick="window.location.href='index.html'"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="service-hero-content">
+          <h1>Readymade House Plans</h1>
+          <p>
+            Explore our expertly designed collection of house plans perfect for
+            your dream home
+          </p>
+          <button
+            class="btn-primary"
+            onclick="document.getElementById('plans-gallery').scrollIntoView({behavior: 'smooth'})"
+          >
+            Browse Plans
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search Filters -->
+    <section class="filters-section">
+      <div class="container">
+        <h2 class="section-title">Find Your Perfect Plan</h2>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label><i class="fas fa-ruler-combined"></i> Plot Size</label>
+            <select id="plot-size" class="filter-select">
+              <option value="">All Sizes</option>
+              <option value="20x30">20x30 ft</option>
+              <option value="30x40">30x40 ft</option>
+              <option value="30x50">30x50 ft</option>
+              <option value="40x60">40x60 ft</option>
+              <option value="50x80">50x80 ft</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label><i class="fas fa-bed"></i> BHK</label>
+            <select id="bhk-filter" class="filter-select">
+              <option value="">All Types</option>
+              <option value="1">1 BHK</option>
+              <option value="2">2 BHK</option>
+              <option value="3">3 BHK</option>
+              <option value="4">4 BHK</option>
+              <option value="5">5+ BHK</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label><i class="fas fa-layer-group"></i> Floors</label>
+            <select id="floors-filter" class="filter-select">
+              <option value="">All</option>
+              <option value="1">Single Floor</option>
+              <option value="2">Duplex (2 Floors)</option>
+              <option value="3">3 Floors</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label><i class="fas fa-compass"></i> Facing</label>
+            <select id="facing-filter" class="filter-select">
+              <option value="">All Directions</option>
+              <option value="north">North</option>
+              <option value="south">South</option>
+              <option value="east">East</option>
+              <option value="west">West</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label><i class="fas fa-rupee-sign"></i> Price Range</label>
+            <select id="price-filter" class="filter-select">
+              <option value="">All Prices</option>
+              <option value="0-5000">Under ₹5,000</option>
+              <option value="5000-10000">₹5,000 - ₹10,000</option>
+              <option value="10000-15000">₹10,000 - ₹15,000</option>
+              <option value="15000+">Above ₹15,000</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <button class="btn-primary filter-btn" onclick="applyFilters()">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans Gallery -->
+    <section id="plans-gallery" class="plans-gallery">
+      <div class="container">
+        <div class="plans-grid" id="plans-grid">
+          <!-- Plans will be loaded here dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">What's Included in Every Plan</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3>Detailed Floor Plans</h3>
+            <p>
+              High-quality 2D floor plans with complete room dimensions and
+              layout details
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3>Elevation Designs</h3>
+            <p>
+              Beautiful front elevation designs that match your architectural
+              style
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-map"></i>
+            </div>
+            <h3>Site Plan</h3>
+            <p>
+              Complete site layout showing property boundaries and building
+              placement
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-hammer"></i>
+            </div>
+            <h3>Construction Guide</h3>
+            <p>Basic construction guidelines and material specifications</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-sync"></i>
+            </div>
+            <h3>Free Revisions</h3>
+            <p>Minor modifications to customize the plan for your needs</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>Expert Support</h3>
+            <p>Dedicated support from our architects throughout your project</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Can't Find What You're Looking For?</h2>
+        <p>
+          Get a custom house plan designed specifically for your requirements
+        </p>
+        <button class="btn-primary" onclick="showCustomPlanModal()">
+          Request Custom Design
+        </button>
+      </div>
+    </section>
+
+    <!-- Custom Plan Modal -->
+    <div id="customPlanModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('customPlanModal')"
+          >&times;</span
+        >
+        <h2>Request Custom House Plan</h2>
+        <form id="customPlanForm">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="tel" name="phone" placeholder="Your Phone" required />
+          <input
+            type="text"
+            name="plotSize"
+            placeholder="Plot Size (e.g., 30x40 ft)"
+            required
+          />
+          <select name="bhk" required>
+            <option value="">Select BHK</option>
+            <option value="1">1 BHK</option>
+            <option value="2">2 BHK</option>
+            <option value="3">3 BHK</option>
+            <option value="4">4 BHK</option>
+            <option value="5">5+ BHK</option>
+          </select>
+          <select name="floors" required>
+            <option value="">Number of Floors</option>
+            <option value="1">Single Floor</option>
+            <option value="2">2 Floors (Duplex)</option>
+            <option value="3">3 Floors</option>
+          </select>
+          <input type="text" name="budget" placeholder="Your Budget (₹)" />
+          <textarea
+            name="requirements"
+            placeholder="Specific Requirements (e.g., car parking, pooja room, etc.)"
+            rows="4"
+            required
+          ></textarea>
+          <button type="submit" class="btn-primary">Submit Request</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Plan Detail Modal -->
+    <div id="planDetailModal" class="modal">
+      <div class="modal-content plan-detail-content">
+        <span class="close" onclick="closeModal('planDetailModal')"
+          >&times;</span
+        >
+        <div id="planDetailContent">
+          <!-- Plan details will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Planify</h3>
+            <p>Beautiful Homes, Designed Your Way</p>
+          </div>
+          <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="house-plans.html">House Plans</a></li>
+              <li><a href="elevations.html">3D Elevations</a></li>
+              <li><a href="vastu.html">Vastu Consultancy</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>+91 7760301118</p>
+            <p>help@planify.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Planify. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="house-plans.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "building/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "building/frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/building/server.js"
+    },
+    {
+      "src": "/admin(?:\\.html)?",
+      "dest": "/building/frontend/admin.html"
+    },
+    {
+      "src": "/(.*\\.(css|js|png|jpg|jpeg|svg|webp|ico|json))",
+      "dest": "/building/frontend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/building/frontend/index.html"
+    }
+  ]
+}
+

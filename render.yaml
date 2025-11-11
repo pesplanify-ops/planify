@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: planify-app
+    env: node
+    rootDirectory: building
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Set this in Render dashboard after linking the repo
+      - key: MONGODB_URI
+        generateValue: false
+      - key: JWT_SECRET
+        generateValue: true
+    # Optional: requires a paid plan on Render for persistent storage.
+    # Remove this block if you use MongoDB Atlas + S3 (recommended).
+    disks:
+      - name: uploads
+        mountPath: /opt/render/project/src/building/uploads
+        sizeGB: 1
+
+

@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "🚀 Launch Planify Server",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/start-with-email.js",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "🐛 Debug Demo Server",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/demo-server.js",
+      "console": "integratedTerminal"
+    }
+  ]
+}

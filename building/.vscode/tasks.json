@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 Start Planify Server",
+      "type": "shell",
+      "command": "node start-with-email.js",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true,
+        "echo": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "🛑 Stop Server (Kill Port 3000)",
+      "type": "shell",
+      "command": "lsof -ti:3000 | xargs kill -9 || echo '✅ No process running on port 3000'",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🔄 Restart Planify Server",
+      "dependsOn": [
+        "🛑 Stop Server (Kill Port 3000)",
+        "🚀 Start Planify Server"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Test API - Packages",
+      "type": "shell",
+      "command": "curl -s http://localhost:3000/api/packages | python3 -m json.tool",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🧪 Test API - Consultations",
+      "type": "shell",
+      "command": "curl -s http://localhost:3000/api/consultations | python3 -m json.tool",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🧪 Test API - Projects",
+      "type": "shell",
+      "command": "curl -s http://localhost:3000/api/projects | python3 -m json.tool",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🌐 Open in Browser",
+      "type": "shell",
+      "command": "open http://localhost:3000",
+      "problemMatcher": []
+    }
+  ]
+}
