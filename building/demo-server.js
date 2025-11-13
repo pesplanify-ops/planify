@@ -27,6 +27,7 @@ cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
 });
 
 const isCloudinaryConfigured =
@@ -766,12 +767,14 @@ app.post("/api/house-plans", upload.single("image"), async (req, res) => {
     }
 
     const uploadResult = await new Promise((resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          { folder: "planify/house-plans" },
-          (error, result) => (error ? reject(error) : resolve(result))
-        )
-        .end(req.file.buffer);
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: "planify/house-plans",
+          resource_type: "auto",
+        },
+        (error, result) => (error ? reject(error) : resolve(result))
+      );
+      stream.end(req.file.buffer);
     });
 
     let features = [];
@@ -882,16 +885,12 @@ app.get("/api/house-plans/:id/download", async (req, res) => {
     try {
       if (plan.image?.startsWith("http")) {
         const response = await fetch(plan.image);
-        if (response.ok) {
-          const arrayBuffer = await response.arrayBuffer();
-          imageBuffer = Buffer.from(arrayBuffer);
-          console.log("✅ Remote image loaded successfully");
-        } else {
-          console.log(
-            "⚠️ Could not fetch remote image, status:",
-            response.status
-          );
+        if (!response.ok) {
+          throw new Error(`Remote image request failed with ${response.status}`);
         }
+        const arrayBuffer = await response.arrayBuffer();
+        imageBuffer = Buffer.from(arrayBuffer);
+        console.log("✅ Remote image loaded successfully");
       } else if (plan.image) {
         const imagePath = path.join(__dirname, plan.image);
         if (fs.existsSync(imagePath)) {
