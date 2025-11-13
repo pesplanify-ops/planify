@@ -106,7 +106,7 @@ body {
 
 .btn-dashboard,
 .btn-logout {
-  padding: 0.45rem 1.2rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 8px;
   border: 2px solid var(--lux-gold);
   background: linear-gradient(
@@ -116,15 +116,16 @@ body {
   );
   color: var(--lux-ink);
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 42px;
+  min-height: 36px;
 }
 
 .btn-dashboard {
-  min-width: 150px;
+  min-width: 120px;
   text-transform: uppercase;
+  font-size: 0.95rem;
 }
 
 .btn-dashboard:hover {
@@ -138,6 +139,7 @@ body {
   border-color: rgba(218, 165, 32, 0.6);
   color: rgba(218, 165, 32, 0.8);
   font-weight: 600;
+  font-size: 0.92rem;
 }
 
 .btn-logout:hover {
