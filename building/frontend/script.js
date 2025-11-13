@@ -1065,8 +1065,7 @@ function showSearchResults(plans, criteria) {
             </div>
           </div>
         </div>
-      `
-    `;
+      `;
     })
     .join("");
 
