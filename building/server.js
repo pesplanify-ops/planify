@@ -25,7 +25,11 @@ const ADMIN_SESSION_VALUE = crypto
   .update(`${ADMIN_EMAIL}:${ADMIN_PASSWORD}:${ADMIN_SESSION_SECRET}`)
   .digest('hex');
 
+const EMAIL_NOTIFICATIONS_ENABLED =
+  process.env.ENABLE_EMAIL_NOTIFICATIONS !== 'false';
+
 const isEmailConfigured =
+  EMAIL_NOTIFICATIONS_ENABLED &&
   emailConfig.gmail.auth.user !== 'your_email@gmail.com' &&
   emailConfig.gmail.auth.pass !== 'your_app_password';
 

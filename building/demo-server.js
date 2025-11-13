@@ -42,6 +42,9 @@ const isCloudinaryConfigured =
     process.env.CLOUDINARY_API_KEY &&
     process.env.CLOUDINARY_API_SECRET);
 
+const EMAIL_NOTIFICATIONS_ENABLED =
+  process.env.ENABLE_EMAIL_NOTIFICATIONS !== "false";
+
 if (!isCloudinaryConfigured) {
   console.warn(
     "⚠️ Cloudinary credentials are not fully configured. Image uploads will fail."
@@ -89,6 +92,7 @@ const transporter = nodemailer.createTransport(emailConfig.gmail);
 
 // Check if email is properly configured
 const isEmailConfigured =
+  EMAIL_NOTIFICATIONS_ENABLED &&
   emailConfig.gmail.auth.user !== "your_email@gmail.com" &&
   emailConfig.gmail.auth.pass !== "your_app_password";
 
