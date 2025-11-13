@@ -173,11 +173,14 @@ async function loadHousePlans() {
         .map(
           (plan) => `
                 <div class="plan-card">
-                    <div>
+                    <div class="plan-image">
                         ${
-                          plan.image.startsWith("/uploads")
+                          plan.image &&
+                          (plan.image.startsWith("/uploads") ||
+                            plan.image.startsWith("http://") ||
+                            plan.image.startsWith("https://"))
                             ? `<img src="${plan.image}" class="plan-image-thumb" alt="${plan.title}">`
-                            : `<div class="plan-emoji">${plan.image}</div>`
+                            : `<span class="plan-emoji">${plan.image || "🏠"}</span>`
                         }
                     </div>
                     <div class="plan-details">
