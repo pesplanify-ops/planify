@@ -1080,15 +1080,12 @@ function showSearchResults(plans, criteria) {
 }
 
 function getPlanImageMarkup(plan) {
-  const image = plan.image || "";
-  const isCloudUrl =
-    image.startsWith("http://") ||
-    image.startsWith("https://") ||
-    image.startsWith("//");
+  const image = (plan.image || "").toString().trim();
+  const isCloudUrl = /^https?:\/\//i.test(image) || image.startsWith("//");
   const isLocalUpload = image.startsWith("/uploads");
 
   if (isCloudUrl || isLocalUpload) {
-    return `<img src="${image}" alt="${plan.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="this.closest('.plan-image').innerHTML='<div class="plan-image-fallback">🏠</div>'" />`;
+    return `<img src="${image}" alt="${plan.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="this.closest('.plan-image').innerHTML='<div class=\"plan-image-fallback\">🏠</div>'" />`;
   }
 
   if (image && image.length <= 6) {
