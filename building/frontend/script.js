@@ -1025,13 +1025,7 @@ function showSearchResults(plans, criteria) {
       return `
         <div class="plan-card">
             <div class="plan-image">
-                ${
-                  plan.image && plan.image.startsWith("/uploads")
-                    ? `<img src="${plan.image}" alt="${plan.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="console.error('Image failed to load:', this.src)" onload="console.log('Image loaded successfully:', this.src)" />`
-                    : `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: #f0f0f0; border-radius: 8px;">${
-                        plan.image || "🏠"
-                      }</div>`
-                }
+                ${getPlanImageMarkup(plan)}
             </div>
             <div class="plan-details">
                 <div class="plan-title">${plan.title}</div>
@@ -1039,10 +1033,8 @@ function showSearchResults(plans, criteria) {
                     <span>${
                       plan.plotDimension || plan.dimension || "N/A"
                     }</span>
-                    <span>${plan.bhk} BHK</span>
-                    <span>${plan.floors} Floor${
-        plan.floors > 1 ? "s" : ""
-      }</span>
+                    <span>${formatBhk(plan.bhk)}</span>
+                    <span>${formatFloorCount(plan.floors)}</span>
                     ${
                       plan.facing && plan.facing !== "any"
                         ? `<span>${plan.facing} Facing</span>`
@@ -1085,6 +1077,40 @@ function showSearchResults(plans, criteria) {
 
   document.getElementById("searchResultsModal").style.display = "block";
   document.body.style.overflow = "hidden";
+}
+
+function getPlanImageMarkup(plan) {
+  const image = plan.image || "";
+  const isCloudUrl =
+    image.startsWith("http://") ||
+    image.startsWith("https://") ||
+    image.startsWith("//");
+  const isLocalUpload = image.startsWith("/uploads");
+
+  if (isCloudUrl || isLocalUpload) {
+    return `<img src="${image}" alt="${plan.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="this.closest('.plan-image').innerHTML='<div class="plan-image-fallback">🏠</div>'" />`;
+  }
+
+  if (image && image.length <= 6) {
+    return `<div class="plan-image-fallback">${image}</div>`;
+  }
+
+  return `<div class="plan-image-fallback">🏠</div>`;
+}
+
+function formatBhk(bhk) {
+  if (!bhk) return "N/A";
+  const value = String(bhk).replace(/[^0-9]/g, "");
+  return value ? `${value} BHK` : `${bhk}`;
+}
+
+function formatFloorCount(floors) {
+  if (floors === undefined || floors === null) return "N/A";
+  const numFloors = Number(floors);
+  if (Number.isFinite(numFloors)) {
+    return `${numFloors} Floor${numFloors > 1 ? "s" : ""}`;
+  }
+  return `${floors}`;
 }
 
 function generateSamplePlans(criteria) {
