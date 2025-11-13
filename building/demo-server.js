@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
@@ -22,27 +23,25 @@ const ADMIN_SESSION_VALUE = crypto
   .update(`${ADMIN_EMAIL}:${ADMIN_PASSWORD}:${ADMIN_SESSION_SECRET}`)
   .digest("hex");
 
-// Multer configuration for image uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadDir = path.join(__dirname, "uploads", "house-plans");
-    // Create directory if it doesn't exist
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
-    );
-  },
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+const isCloudinaryConfigured =
+  !!process.env.CLOUDINARY_CLOUD_NAME &&
+  !!process.env.CLOUDINARY_API_KEY &&
+  !!process.env.CLOUDINARY_API_SECRET;
+
+if (!isCloudinaryConfigured) {
+  console.warn(
+    "⚠️ Cloudinary credentials are not fully configured. Image uploads will fail."
+  );
+}
+
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },
@@ -759,6 +758,35 @@ app.post("/api/house-plans", upload.single("image"), async (req, res) => {
         .json({ message: "Please fill all required fields" });
     }
 
+    if (!isCloudinaryConfigured) {
+      console.log("❌ Cloudinary not configured");
+      return res.status(500).json({
+        message: "Image upload service is not configured. Please try again later.",
+      });
+    }
+
+    const uploadResult = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          { folder: "planify/house-plans" },
+          (error, result) => (error ? reject(error) : resolve(result))
+        )
+        .end(req.file.buffer);
+    });
+
+    let features = [];
+    if (req.body.features) {
+      if (typeof req.body.features === "string") {
+        try {
+          features = JSON.parse(req.body.features);
+        } catch (parseError) {
+          console.warn("⚠️ Unable to parse features JSON:", parseError.message);
+        }
+      } else if (Array.isArray(req.body.features)) {
+        features = req.body.features;
+      }
+    }
+
     const housePlanData = {
       id: `plan-${Date.now()}`,
       title: req.body.title,
@@ -768,8 +796,9 @@ app.post("/api/house-plans", upload.single("image"), async (req, res) => {
       floors: parseInt(req.body.floors),
       facing: req.body.facing || "any",
       price: parseFloat(req.body.price),
-      image: `/uploads/house-plans/${req.file.filename}`,
-      features: req.body.features ? JSON.parse(req.body.features) : [],
+      image: uploadResult.secure_url,
+      cloudinaryPublicId: uploadResult.public_id,
+      features,
       area: req.body.area ? parseFloat(req.body.area) : null,
       style: req.body.style || "modern",
       isAvailable: true,
@@ -837,7 +866,7 @@ app.get("/QUICK_BUTTON_TEST.html", (req, res) => {
 });
 
 // Download house plan as PDF
-app.get("/api/house-plans/:id/download", (req, res) => {
+app.get("/api/house-plans/:id/download", async (req, res) => {
   try {
     const { id } = req.params;
     const plan = demoStorage.housePlans.find((p) => p.id === id);
@@ -851,9 +880,25 @@ app.get("/api/house-plans/:id/download", (req, res) => {
     // Read the image file
     let imageBuffer = null;
     try {
-      const imagePath = path.join(__dirname, plan.image);
-      imageBuffer = fs.readFileSync(imagePath);
-      console.log("✅ Image loaded successfully");
+      if (plan.image?.startsWith("http")) {
+        const response = await fetch(plan.image);
+        if (response.ok) {
+          const arrayBuffer = await response.arrayBuffer();
+          imageBuffer = Buffer.from(arrayBuffer);
+          console.log("✅ Remote image loaded successfully");
+        } else {
+          console.log(
+            "⚠️ Could not fetch remote image, status:",
+            response.status
+          );
+        }
+      } else if (plan.image) {
+        const imagePath = path.join(__dirname, plan.image);
+        if (fs.existsSync(imagePath)) {
+          imageBuffer = fs.readFileSync(imagePath);
+          console.log("✅ Local image loaded successfully");
+        }
+      }
     } catch (error) {
       console.log("⚠️ Could not load image, using placeholder:", error.message);
     }
@@ -1178,7 +1223,7 @@ app.post("/api/plans/search", async (req, res) => {
 });
 
 // Delete House Plan (Admin only)
-app.delete("/api/house-plans/:id", (req, res) => {
+app.delete("/api/house-plans/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const index = demoStorage.housePlans.findIndex((plan) => plan.id === id);
@@ -1190,8 +1235,19 @@ app.delete("/api/house-plans/:id", (req, res) => {
     // Get the plan to delete the image file
     const plan = demoStorage.housePlans[index];
 
-    // Delete the image file
-    if (plan.image && !plan.image.startsWith("🏠")) {
+    // Delete the image from Cloudinary if available
+    if (plan.cloudinaryPublicId) {
+      try {
+        await cloudinary.uploader.destroy(plan.cloudinaryPublicId);
+        console.log("🗑️ Deleted Cloudinary asset:", plan.cloudinaryPublicId);
+      } catch (cloudError) {
+        console.error("⚠️ Failed to delete Cloudinary asset:", cloudError.message);
+      }
+    } else if (
+      plan.image &&
+      !plan.image.startsWith("http") &&
+      !plan.image.startsWith("🏠")
+    ) {
       const imagePath = path.join(__dirname, plan.image);
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);

@@ -4,13 +4,15 @@
   "description": "Architectural Design Service Platform",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node demo-server.js",
+    "dev": "nodemon demo-server.js",
+    "api": "node server.js",
     "build": "npm run build:frontend",
     "build:frontend": "cd frontend && npm run build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.8.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
