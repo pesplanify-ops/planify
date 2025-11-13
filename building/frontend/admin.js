@@ -173,15 +173,8 @@ async function loadHousePlans() {
         .map(
           (plan) => `
                 <div class="plan-card">
-                    <div class="plan-image">
-                        ${
-                          plan.image &&
-                          (plan.image.startsWith("/uploads") ||
-                            plan.image.startsWith("http://") ||
-                            plan.image.startsWith("https://"))
-                            ? `<img src="${plan.image}" class="plan-image-thumb" alt="${plan.title}">`
-                            : `<span class="plan-emoji">${plan.image || "🏠"}</span>`
-                        }
+                    <div>
+                        ${renderPlanImage(plan)}
                     </div>
                     <div class="plan-details">
                         <div class="plan-title">${plan.title}</div>
@@ -196,7 +189,7 @@ async function loadHousePlans() {
                             }</span>
                             <span class="spec-badge">${plan.bhk} BHK</span>
                             <span class="spec-badge">${plan.floors} Floor${
-            plan.floors > 1 ? "s" : ""
+            Number(plan.floors) > 1 ? "s" : ""
           }</span>
                             <span class="spec-badge">${
                               plan.facing || "Any"
@@ -246,6 +239,25 @@ async function loadHousePlans() {
             </div>
         `;
   }
+}
+
+function renderPlanImage(plan) {
+  const image = plan.image || "";
+  const isCloudUrl =
+    image.startsWith("http://") ||
+    image.startsWith("https://") ||
+    image.startsWith("//");
+  const isLocalUpload = image.startsWith("/uploads");
+
+  if (isCloudUrl || isLocalUpload) {
+    return `<img src="${image}" class="plan-image-thumb" alt="${plan.title}">`;
+  }
+
+  if (image && image.length <= 4) {
+    return `<div class="plan-emoji">${image}</div>`;
+  }
+
+  return `<div class="plan-emoji">🏠</div>`;
 }
 
 // Delete a house plan
