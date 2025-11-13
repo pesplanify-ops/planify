@@ -312,8 +312,8 @@ body {
   overflow-y: auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
   margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 #planFinderModal .modal-content::before {
@@ -627,6 +627,14 @@ body {
 .plan-image > * {
   position: relative;
   z-index: 2;
+}
+
+.plan-card .plan-image {
+  width: 100%;
+}
+
+.plan-card .plan-details {
+  width: 100%;
 }
 
 .plan-image-fallback {
