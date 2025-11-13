@@ -43,7 +43,7 @@ const isCloudinaryConfigured =
     process.env.CLOUDINARY_API_SECRET);
 
 const EMAIL_NOTIFICATIONS_ENABLED =
-  process.env.ENABLE_EMAIL_NOTIFICATIONS !== "false";
+  process.env.ENABLE_EMAIL_NOTIFICATIONS === "true";
 
 if (!isCloudinaryConfigured) {
   console.warn(
@@ -836,8 +836,18 @@ app.post("/api/house-plans", upload.single("image"), async (req, res) => {
     });
   } catch (error) {
     console.error("❌ Error uploading house plan:", error);
-    res.status(500).json({
-      message: "Error uploading house plan",
+    const status = error.http_code || 500;
+    let message = "Error uploading house plan";
+
+    if (status === 401 || status === 403) {
+      message =
+        "Image upload failed: Cloudinary authentication was rejected. Please verify the API key and secret.";
+    } else if (error.message) {
+      message = `${message}: ${error.message}`;
+    }
+
+    res.status(status >= 400 && status < 600 ? status : 500).json({
+      message,
       error: error.message,
     });
   }

@@ -26,7 +26,7 @@ const ADMIN_SESSION_VALUE = crypto
   .digest('hex');
 
 const EMAIL_NOTIFICATIONS_ENABLED =
-  process.env.ENABLE_EMAIL_NOTIFICATIONS !== 'false';
+  process.env.ENABLE_EMAIL_NOTIFICATIONS === 'true';
 
 const isEmailConfigured =
   EMAIL_NOTIFICATIONS_ENABLED &&

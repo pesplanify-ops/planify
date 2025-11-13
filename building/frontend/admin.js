@@ -132,7 +132,19 @@ async function handleUpload(e) {
     });
 
     console.log("📡 Response status:", response.status);
-    const data = await response.json();
+    let data;
+    const contentType = response.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch (parseErr) {
+        data = { message: text || "Unexpected response from server" };
+      }
+    }
     console.log("📄 Response data:", data);
 
     if (response.ok) {
@@ -141,10 +153,10 @@ async function handleUpload(e) {
       document.getElementById("imagePreview").style.display = "none";
       loadHousePlans(); // Reload the plans list
     } else {
-      showNotification(
-        "❌ Error: " + (data.message || "Upload failed"),
-        "error"
-      );
+      const errorMessage =
+        (data && data.message) ||
+        "Upload failed. Please verify the image and try again.";
+      showNotification(`❌ Error: ${errorMessage}`, "error");
     }
   } catch (error) {
     console.error("❌ Upload error:", error);
