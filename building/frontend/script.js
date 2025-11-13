@@ -91,9 +91,9 @@ function updateAuthUI() {
   const navAuth = document.querySelector(".nav-auth");
   if (currentUser) {
     navAuth.innerHTML = `
-            <span style="margin-right: 1rem; font-weight: 500;">Welcome, ${currentUser.name}</span>
-            <button class="btn-primary" onclick="showDashboard()">Dashboard</button>
-            <button class="btn-login" onclick="logout()">Logout</button>
+            <span class="nav-welcome">Welcome, ${currentUser.name}</span>
+            <button class="btn-dashboard" onclick="showDashboard()">Dashboard</button>
+            <button class="btn-logout" onclick="logout()">Logout</button>
         `;
   } else {
     navAuth.innerHTML = `
