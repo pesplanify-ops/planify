@@ -1024,54 +1024,48 @@ function showSearchResults(plans, criteria) {
 
       return `
         <div class="plan-card">
-            <div class="plan-card-inner">
-                <div class="plan-image">
-                    ${getPlanImageMarkup(plan)}
-                </div>
-                <div class="plan-details">
-                <div class="plan-title">${plan.title}</div>
-                <div class="plan-specs">
-                    <span>${
-                      plan.plotDimension || plan.dimension || "N/A"
-                    }</span>
-                    <span>${formatBhk(plan.bhk)}</span>
-                    <span>${formatFloorCount(plan.floors)}</span>
-                    ${
-                      plan.facing && plan.facing !== "any"
-                        ? `<span>${plan.facing} Facing</span>`
-                        : ""
-                    }
-                </div>
-                <div class="plan-price">₹${
-                  typeof plan.price === "number"
-                    ? plan.price.toLocaleString()
-                    : plan.price
-                }</div>
-                ${
-                  plan.description
-                    ? `<p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;">${plan.description}</p>`
-                    : ""
-                }
-                ${
-                  plan.features && plan.features.length > 0
-                    ? `<div style="margin: 0.5rem 0;">
-                        <strong style="font-size: 0.85rem;">Features:</strong>
-                        <p style="font-size: 0.85rem; color: #666;">${plan.features.join(
-                          ", "
-                        )}</p>
-                      </div>`
-                    : ""
-                }
-                <div class="plan-actions">
-                    <button class="btn-view" onclick="viewPlan('${
-                      plan.id
-                    }')">View Details</button>
-                    <button class="btn-download" onclick="downloadPlan('${
-                      plan.id
-                    }')">Download PDF</button>
-                </div>
+          <div class="plan-card-inner">
+            <div class="plan-image">
+              ${getPlanImageMarkup(plan)}
             </div>
+            <div class="plan-details">
+              <div class="plan-title">${plan.title}</div>
+              <div class="plan-specs">
+                <span>${plan.plotDimension || plan.dimension || "N/A"}</span>
+                <span>${formatBhk(plan.bhk)}</span>
+                <span>${formatFloorCount(plan.floors)}</span>
+                ${
+                  plan.facing && plan.facing !== "any"
+                    ? `<span>${plan.facing} Facing</span>`
+                    : ""
+                }
+              </div>
+              <div class="plan-price">₹${
+                typeof plan.price === "number"
+                  ? plan.price.toLocaleString()
+                  : plan.price
+              }</div>
+              ${
+                plan.description
+                  ? `<p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;">${plan.description}</p>`
+                  : ""
+              }
+              ${
+                plan.features && plan.features.length > 0
+                  ? `<div style="margin: 0.5rem 0;">
+                      <strong style="font-size: 0.85rem;">Features:</strong>
+                      <p style="font-size: 0.85rem; color: #666;">${plan.features.join(", ")}</p>
+                    </div>`
+                  : ""
+              }
+              <div class="plan-actions">
+                <button class="btn-view" onclick="viewPlan('${plan.id}')">View Details</button>
+                <button class="btn-download" onclick="downloadPlan('${plan.id}')">Download PDF</button>
+              </div>
+            </div>
+          </div>
         </div>
+      `
     `;
     })
     .join("");
