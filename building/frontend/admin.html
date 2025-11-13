@@ -82,6 +82,20 @@
         transform: translateY(-2px);
       }
 
+      .admin-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .btn-logout {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
+      }
+
+      .btn-logout:hover {
+        box-shadow: 0 8px 20px rgba(238, 82, 83, 0.3);
+      }
+
       .content-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -343,6 +357,16 @@
           flex-direction: column;
         }
 
+        .admin-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .admin-actions .btn-main,
+        .admin-actions .btn-logout {
+          width: 100%;
+        }
+
         .admin-logo {
           width: 48px;
           height: 48px;
@@ -362,9 +386,14 @@
           <img src="admin-logo.svg" alt="Planify logo" class="admin-logo" />
           <h1><i class="fas fa-tools"></i> Planify Admin</h1>
         </div>
-        <a href="/" class="btn-main"
-          ><i class="fas fa-home"></i> View Website</a
-        >
+        <div class="admin-actions">
+          <a href="/" class="btn-main"
+            ><i class="fas fa-home"></i> View Website</a
+          >
+          <button type="button" class="btn-main btn-logout" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
       </div>
 
       <div class="content-grid">

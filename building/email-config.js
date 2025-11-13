@@ -7,7 +7,7 @@ module.exports = {
     service: "gmail",
     auth: {
       user: "pesplanify@gmail.com", // Your Gmail
-      pass: "ahsj xrol sasu fvvr", // Gmail App Password - REPLACE THIS
+      pass: "tvbq lxqv bnur iqxy", // Gmail App Password - keep secure
     },
   },
 
@@ -18,7 +18,7 @@ module.exports = {
     secure: false,
     auth: {
       user: "pesplanify@gmail.com",
-      pass: "your_app_password",
+      pass: "tvbq lxqv bnur iqxy",
     },
   },
 

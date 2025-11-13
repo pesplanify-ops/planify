@@ -1,40 +1,22 @@
 {
   "housePlans": [
     {
-      "id": "plan-1760798629201",
-      "title": "Test House",
+      "id": "plan-1763013670372",
+      "title": "testing 2",
       "description": "",
       "plotDimension": "30x40",
       "bhk": "2",
       "floors": 2,
       "facing": "north",
-      "price": 15000,
-      "image": "/uploads/house-plans/image-1760798629194-188827150.png",
+      "price": 15677,
+      "image": "/uploads/house-plans/image-1763013670370-804608581.png",
       "features": [],
       "area": 1500,
       "style": "modern",
       "isAvailable": true,
       "uploadedBy": "admin",
-      "createdAt": "2025-10-18T14:43:49.201Z",
-      "updatedAt": "2025-10-18T14:43:49.201Z"
-    },
-    {
-      "id": "plan-1760799137818",
-      "title": "modern",
-      "description": "",
-      "plotDimension": "30x40",
-      "bhk": "2",
-      "floors": 2,
-      "facing": "north",
-      "price": 16000,
-      "image": "/uploads/house-plans/image-1760799137811-351427167.png",
-      "features": [],
-      "area": 1500,
-      "style": "modern",
-      "isAvailable": true,
-      "uploadedBy": "admin",
-      "createdAt": "2025-10-18T14:52:17.818Z",
-      "updatedAt": "2025-10-18T14:52:17.818Z"
+      "createdAt": "2025-11-13T06:01:10.372Z",
+      "updatedAt": "2025-11-13T06:01:10.372Z"
     }
   ]
 }

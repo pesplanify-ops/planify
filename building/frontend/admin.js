@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Setup event listeners
 function setupEventListeners() {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", handleLogout);
+  }
+
   // Form submit
   document
     .getElementById("uploadForm")
@@ -18,6 +23,28 @@ function setupEventListeners() {
   document
     .getElementById("imageInput")
     .addEventListener("change", previewImage);
+}
+
+async function handleLogout() {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (!logoutBtn) return;
+
+  logoutBtn.disabled = true;
+  const originalText = logoutBtn.innerHTML;
+  logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging out';
+
+  try {
+    await fetch("/admin/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error("Error logging out:", error);
+  } finally {
+    window.location.href = "/admin-login.html";
+    logoutBtn.innerHTML = originalText;
+    logoutBtn.disabled = false;
+  }
 }
 
 // Preview image before upload
@@ -101,6 +128,7 @@ async function handleUpload(e) {
     const response = await fetch(`${API_BASE}/house-plans`, {
       method: "POST",
       body: formData,
+      credentials: "include",
     });
 
     console.log("📡 Response status:", response.status);
@@ -135,7 +163,9 @@ async function loadHousePlans() {
   const plansList = document.getElementById("plansList");
 
   try {
-    const response = await fetch(`${API_BASE}/house-plans`);
+    const response = await fetch(`${API_BASE}/house-plans`, {
+      credentials: "include",
+    });
     const data = await response.json();
 
     if (data.plans && data.plans.length > 0) {
@@ -224,6 +254,7 @@ async function deletePlan(planId) {
   try {
     const response = await fetch(`${API_BASE}/house-plans/${planId}`, {
       method: "DELETE",
+      credentials: "include",
     });
 
     const data = await response.json();

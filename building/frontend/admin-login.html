@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planify Admin Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="admin-login-body">
+    <div class="admin-login-wrapper">
+      <div class="admin-login-card">
+        <div class="admin-login-logo">
+          <img src="admin-logo.svg" alt="Planify admin logo" />
+        </div>
+        <h1>Planify Admin</h1>
+        <p class="admin-login-subtitle">
+          Please sign in with your administrator credentials.
+        </p>
+        <form id="adminLoginForm" class="admin-login-form">
+          <div class="form-group">
+            <label for="adminEmail">Email</label>
+            <input
+              type="email"
+              id="adminEmail"
+              name="email"
+              placeholder="Enter admin email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input
+              type="password"
+              id="adminPassword"
+              name="password"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+          <button type="submit" id="adminLoginButton" class="btn-login-submit">
+            <i class="fas fa-lock"></i>
+            Sign In
+          </button>
+          <p id="loginError" class="admin-login-error" hidden>
+            Invalid credentials. Please try again.
+          </p>
+        </form>
+        <a class="admin-login-back" href="/">
+          <i class="fas fa-arrow-left"></i>
+          Back to Website
+        </a>
+      </div>
+    </div>
+
+    <script src="admin-login.js"></script>
+  </body>
+</html>
+
